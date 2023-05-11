@@ -1,0 +1,21 @@
+---
+import Root from '../layouts/Root.astro';
+import Post from '../components/Post.astro';
+import { api } from '../lib/api.js';
+
+export async function getStaticPaths() {
+	const { posts } = await api();
+
+	return posts.map((post) => ({ params: { slug: post.path }, props: { post } }));
+}
+
+const { post } = Astro.props;
+---
+
+<Root>
+	<main>
+		<Post {post} />
+
+		<p><a href="/">&larr; Home</a></p>
+	</main>
+</Root>

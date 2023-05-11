@@ -1,0 +1,26 @@
+---
+import Root from '../layouts/Root.astro';
+import List from '../components/List.astro';
+import { api } from '../lib/api.js';
+import { PAGE_SIZE } from '../consts';
+import Pagination from '../components/Pagination.astro';
+
+export async function getStaticPaths({ paginate }) {
+	const { posts } = await api();
+
+	return paginate(
+		posts.map((post) => ({ params: { slug: post.path }, post })),
+		{ pageSize: PAGE_SIZE }
+	);
+}
+
+const { page } = Astro.props;
+const posts = page.data.map(({ post }) => post);
+---
+
+<Root>
+	<main>
+		<List {posts} />
+		<Pagination {page} />
+	</main>
+</Root>

@@ -1,0 +1,11 @@
+---
+import { marked } from 'marked';
+
+const { markdown } = Astro.props;
+
+const html = marked.parse(markdown ?? '', {
+	silent: true,
+});
+---
+
+<Fragment set:html={html} />

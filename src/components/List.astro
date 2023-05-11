@@ -1,0 +1,6 @@
+---
+import Post from '../components/Post.astro';
+const { posts } = Astro.props;
+---
+
+{posts.map((post) => <Post {post} tagName="article" />)}
