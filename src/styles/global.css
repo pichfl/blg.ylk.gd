@@ -160,11 +160,12 @@ main,
   list-style: decimal;
 }
 
-.content p + *,
-.content ul + *,
-.content ol + *,
-.content table + *,
-.content pre + * {
+.content * + figure,
+.content * + p,
+.content * + ul,
+.content * + ol,
+.content * + table,
+.content * + pre {
   margin-top: var(--spacing-md);
 }
 
@@ -195,7 +196,6 @@ figure img {
     margin-inline: calc(-1 * var(--spacing-xl));
   }
 }
-
 
 figcaption {
   text-align: center;

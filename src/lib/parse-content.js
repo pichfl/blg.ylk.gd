@@ -30,10 +30,16 @@ export function parse(allContent) {
 
 		if (type === 'text') {
 			if (img && value.startsWith('^ ')) {
-				img.caption = value.slice(2);
+				const [caption, ...rest] = value.slice(2).split('\n');
+
+				img.caption = caption.slice(2);
 				img = null;
 
-				continue;
+				content.value = rest.join('\n');
+
+				if (content.value.trim() === '') {
+					continue;
+				}
 			}
 
 			contents.push(content);
