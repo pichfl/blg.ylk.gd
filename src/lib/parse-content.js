@@ -1,10 +1,11 @@
 import { marked } from 'marked';
 import stripIndent from 'strip-indent';
 import sanitizeHtml from 'sanitize-html';
+import { parse as parseDate, parseISO } from 'date-fns';
 
 import { API_HOST } from '../consts';
 
-export function parse(allContent) {
+export function parse(path, allContent) {
 	const contents = [];
 
 	let img;
@@ -22,15 +23,18 @@ export function parse(allContent) {
 		}
 
 		if (type.startsWith('image')) {
-			const src = `${API_HOST}/${content.src}`;
+			const src = `${API_HOST}${content.src}`.replace('jpeg', 'jpg');
 
-			img = { type: 'image', src };
+			img = { type: 'image', src, width: content.width, height: content.height };
+
 			contents.push(img);
+
+			continue;
 		}
 
 		if (type === 'text') {
 			if (img && value.startsWith('^ ')) {
-				const [caption, ...rest] = value.slice(2).split('\n');
+				const [caption, ...rest] = value.split('\n');
 
 				img.caption = caption.slice(2);
 				img = null;
@@ -54,11 +58,20 @@ export function parse(allContent) {
 		type = 'quote';
 	}
 
-	const html = contents.reduce((result, { type, value, src, caption }) => {
+	const html = contents.reduce((result, { type, value, src, caption, width = 0, height = 0 }) => {
 		if (type === 'image') {
 			result += stripIndent(`
-				<figure>
-					<img src="${src}" alt="" />
+				<figure ${
+					width + height > 0
+						? `data-orientation="${width > height ? 'landscape' : 'portrait'}"`
+						: ''
+				}>
+					<img 
+						src="${src}" 
+						alt=""
+						${width ? `width="${width}"` : ''}
+						${height ? `height="${height}"` : ''}
+					/>
 					${caption ? `<figcaption>${caption}</figcaption>` : ''}
 				</figure>
 			`);
@@ -73,15 +86,20 @@ export function parse(allContent) {
 		return result;
 	}, '');
 
+	date = date ? parseISO(date) : parseDate(path, 'yyyy/MM/dd/HHmmss', new Date());
+
+	const htmlSanitized = sanitizeHtml(html, {
+		allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+	});
+
 	return {
 		contents,
+		date,
 		html,
-		htmlSanitized: sanitizeHtml(html, {
-			allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-		}),
-		type,
-		title,
+		htmlSanitized,
 		id,
-		date: new Date(date),
+		path,
+		title,
+		type,
 	};
 }

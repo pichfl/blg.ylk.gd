@@ -102,7 +102,6 @@ a:hover {
 }
 
 .top,
-main,
 .end {
   margin-inline: auto;
   max-width: var(--max-width);
@@ -169,32 +168,27 @@ main,
   margin-top: var(--spacing-md);
 }
 
+.content > :not(figure) {
+  margin-inline: auto;
+  max-width: var(--max-width);
+}
+
 pre {
   max-width: 100%;
   overflow: auto;
 }
 
-figure {
-  margin-inline: calc(-1 * calc((100vw - max(var(--max-width), 100%)) / 2 - var(--spacing-xl)));
-}
-
 figure img {
-  --scale: calc(7 / 5);
-  --size: calc(55rem + var(--spacing-xl) * 2);
-  --max: 96;
-  --maxPx: 960px;
-
   display: block;
-  max-width: min(min(calc(calc(1% * var(--max)), var(--size))), var(--maxPx));
-  max-height: min(max(calc(calc(1vw * var(--max)) / var(--scale)), calc(var(--size) / var(--scale))), var(--maxPx));
-  margin: 0 auto;
-  object-fit: contain;
-
+  margin-inline: auto;
+  width: 100%;
+  max-width: 960px;
+  height: auto;
 }
-@media (max-width: 700px) {
-  figure {
-    margin-inline: calc(-1 * var(--spacing-xl));
-  }
+
+figure[data-orientation="portrait"] img {
+  max-width: var(--max-width);
+  height: auto;
 }
 
 figcaption {

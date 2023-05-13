@@ -1,9 +1,11 @@
 ---
 import { formatRFC3339, format } from 'date-fns';
 
-const { path, post, tagName = 'div' } = Astro.props;
-const { type, title, date, html } = post;
+const { post, tagName = 'div' } = Astro.props;
+const { type, title, date, html, path } = post;
 const TagName = tagName;
+
+console.log(path, date);
 ---
 
 <TagName class={'post ' + type}>
@@ -20,7 +22,7 @@ const TagName = tagName;
 	<footer>
 		<p>
 			<a rel="permalink" href={'/' + path}
-				><time datetime={formatRFC3339(date)}>{format(date, 'dd/MM/yyyy')}</time></a
+				><time datetime={date}>{format(date, 'dd/MM/yyyy')}</time></a
 			>
 		</p>
 	</footer>

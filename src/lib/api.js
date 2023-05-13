@@ -16,7 +16,11 @@ export const api = onetime(async () => {
 			chunk.map(async (file) => {
 				const response = await fetch(`${API_HOST}/${file}`);
 				const content = await response.json();
-				posts.push({ path: parse(file).dir, content, ...parseContent(content) });
+				posts.push({
+					path: parse(file).dir,
+					content,
+					...parseContent(parse(file).dir, content),
+				});
 			})
 		);
 	}
