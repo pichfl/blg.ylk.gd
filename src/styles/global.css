@@ -178,6 +178,12 @@ pre {
   overflow: auto;
 }
 
+@media (max-width: 800px) {
+  figure {
+    margin-inline: calc(-1 * var(--spacing-xl));
+  }
+}
+
 figure img {
   display: block;
   margin-inline: auto;
