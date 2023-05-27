@@ -26,6 +26,6 @@ export const api = onetime(async () => {
 	}
 
 	return {
-		posts: sortBy(posts, (post) => post.path.replaceAll('/', '')).reverse(),
+		posts: sortBy(posts, (post) => post.date).reverse(),
 	};
 });
