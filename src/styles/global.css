@@ -185,8 +185,8 @@ pre {
   }
 }
 
-.content figure + * {
-  margin-top: var(--spacing-lg);
+.content figure[data-orientation] + * {
+  margin-top: var(--spacing-xl);
 } 
 
 figure img {
