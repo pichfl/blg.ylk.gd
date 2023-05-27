@@ -168,7 +168,8 @@ a:hover {
   margin-top: var(--spacing-md);
 }
 
-.content > :not(figure) {
+.content > :not(figure),
+.content figcaption {
   margin-inline: auto;
   max-width: var(--max-width);
 }
@@ -183,6 +184,10 @@ pre {
     margin-inline: calc(-1 * var(--spacing-xl));
   }
 }
+
+.content figure + * {
+  margin-top: var(--spacing-lg);
+} 
 
 figure img {
   display: block;
