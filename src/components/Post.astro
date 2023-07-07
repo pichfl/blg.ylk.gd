@@ -4,8 +4,6 @@ import { format } from 'date-fns';
 const { post, tagName = 'div' } = Astro.props;
 const { type, title, date, html, path } = post;
 const TagName = tagName;
-
-console.log(path, date);
 ---
 
 <TagName class={'post ' + type}>

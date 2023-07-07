@@ -8,6 +8,8 @@ import { PAGE_SIZE } from '../consts';
 const { posts } = await api();
 const page = {
 	currentPage: 1,
+	total: posts.length,
+	size: PAGE_SIZE,
 	url: {
 		next: '/2',
 	},

@@ -3,32 +3,29 @@ const { page } = Astro.props;
 
 const prev = page.currentPage === 2 ? '/' : page.url.prev;
 const next = page.url.next;
+const total = Math.ceil(page.total / page.size)
 ---
 
 <nav>
 	{
-		prev && (
+		prev ? (
 			<a href={prev}>
 				<span role="presentation">&larr;</span> Newer
 			</a>
+		) : (
+			<span>&nbsp;</span>
 		)
 	}
-	<span
-		>{
-			page.currentPage === 1 ? (
-				''
-			) : (
-				<>
-					{page.currentPage} / {page.total}
-				</>
-			)
-		}</span
-	>
+	<span>
+		{page.currentPage} / {total}
+	</span>
 	{
-		next && (
+		next ? (
 			<a href={next}>
 				Older <span role="presentation">&rarr;</span>
 			</a>
+		) : (
+			<span>&nbsp;</span>
 		)
 	}
 </nav>
@@ -36,7 +33,20 @@ const next = page.url.next;
 <style>
 	nav {
 		display: flex;
-		justify-content: center;
+		margin-inline: auto;
+		width: var(--max-width);
+		justify-content: space-between;
 		gap: var(--spacing-lg);
+	}
+	nav > * {
+		flex: 1 1 33%
+	}
+
+	nav > *:first-child {
+		text-align: left;
+	}
+
+	nav > *:last-child {
+		text-align: right;
 	}
 </style>

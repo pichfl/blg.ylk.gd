@@ -19,8 +19,6 @@ const posts = page.data.map(({ post }) => post);
 ---
 
 <Root>
-	<main>
-		<List {posts} />
-		<Pagination {page} />
-	</main>
+	<List {posts} />
+	<Pagination {page} />
 </Root>
