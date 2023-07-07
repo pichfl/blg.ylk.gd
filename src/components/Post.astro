@@ -1,5 +1,5 @@
 ---
-import { formatRFC3339, format } from 'date-fns';
+import { format } from 'date-fns';
 
 const { post, tagName = 'div' } = Astro.props;
 const { type, title, date, html, path } = post;
@@ -17,7 +17,7 @@ console.log(path, date);
 		)
 	}
 
-	<div class="content" set:html={html}></div>
+	<div class="content" set:html={html} />
 
 	<footer>
 		<p>
