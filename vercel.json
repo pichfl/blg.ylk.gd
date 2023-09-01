@@ -1,0 +1,13 @@
+{
+	"redirects": [],
+	"rewrites": [
+		{
+			"source": "/assets/plsbl.js",
+			"destination": "https://plausible.io/js/plausible.outbound-links.js"
+		},
+		{
+			"source": "/api/v1/event",
+			"destination": "https://plausible.io/api/event"
+		}
+	]
+}

@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import 'the-new-css-reset/css/reset.css';
-import '@fontsource/jost/variable.css';
+import '@fontsource-variable/jost/index.css';
 import '../styles/global.css';
 
 export interface Props {
@@ -41,3 +41,9 @@ const { title, description, image } = Astro.props;
 	title="RSS"
 	href={new URL('feed.rss', Astro.site)}
 />
+<script
+	defer
+	data-domain="blg.ylk.gd"
+	data-api="/api/v1/event"
+	src="/assets/plsbl.js"
+></script>
