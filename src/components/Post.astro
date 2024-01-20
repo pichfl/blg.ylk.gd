@@ -1,9 +1,22 @@
 ---
 import { format } from 'date-fns';
+import { marked } from 'marked';
+import sanitizeHtml from 'sanitize-html';
 
 const { post, tagName = 'div' } = Astro.props;
-const { type, title, date, html, path } = post;
+const { type, title, date, content, path } = post;
 const TagName = tagName;
+
+const html = marked(content);
+
+	const htmlSanitized = sanitizeHtml(html, {
+		allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure']),
+		allowedAttributes: Object.assign({}, sanitizeHtml.defaults.allowedAttributes, {
+			img: ['src', 'alt', 'title', 'width', 'height', 'data-*'],
+			a: ['href', 'name', 'target'],
+			figure: ['class', 'data-*'],
+		}),
+	});
 ---
 
 <TagName class={'post ' + type}>
@@ -15,7 +28,7 @@ const TagName = tagName;
 		)
 	}
 
-	<div class="content" set:html={html} />
+	<div class="content" set:html={htmlSanitized} />
 
 	<footer>
 		<p>

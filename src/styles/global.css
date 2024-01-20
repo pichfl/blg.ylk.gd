@@ -56,10 +56,14 @@ a:hover {
 	color: var(--orange);
 }
 
+img {
+	width: auto;
+	height: auto;
+}
+
 .top img {
 	display: block;
 	width: 6rem;
-	height: auto;
 	border-radius: 50%;
 	overflow: hidden;
 	margin: 0 auto var(--spacing-lg);
@@ -174,21 +178,29 @@ pre {
 	overflow: auto;
 }
 
+img:not(:is(p, li, figure) > img) {
+	display: block;
+}
+
 @media (max-width: 800px) {
 	figure {
 		margin-inline: calc(-1 * var(--spacing-xl));
 	}
 }
 
-.content * + figure[data-orientation] {
+.content * + figure,
+.content img:not(:is(p, li, figure) > img) {
 	margin-top: var(--spacing-xl);
 }
 
-.content figure[data-orientation] + * {
+.content figure + *,
+.content img:not(:is(p, li, figure) > img) + * {
 	margin-top: var(--spacing-xl);
 }
 
-figure img {
+figure img,
+.content img:only-child,
+.content img:not(:is(p, li, figure) > img) {
 	display: block;
 	margin-inline: auto;
 	width: 100%;
@@ -196,9 +208,14 @@ figure img {
 	height: auto;
 }
 
-figure[data-orientation='portrait'] img {
+.content img[data-orientation='portrait'],
+.content img[data-orientation='square'] {
 	max-width: var(--max-width);
 	height: auto;
+}
+
+figure[data-variant*="noresize"] img {
+	width: auto;
 }
 
 figcaption {
