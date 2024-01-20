@@ -4,7 +4,7 @@ import { marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 
 const { post, tagName = 'div' } = Astro.props;
-const { type, title, date, content, path } = post;
+const { title, date, content, path } = post;
 const TagName = tagName;
 
 const html = marked(content);
@@ -19,7 +19,7 @@ const html = marked(content);
 	});
 ---
 
-<TagName class={'post ' + type}>
+<TagName class="post">
 	{
 		title && (
 			<header>

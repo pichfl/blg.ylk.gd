@@ -135,6 +135,11 @@ img {
 	color: inherit;
 }
 
+.content {
+	text-wrap: balance;
+	text-align: left;
+}
+
 .content strong,
 .content b {
 	font-weight: 700;
@@ -225,11 +230,7 @@ figcaption {
 	color: var(--fg-muted);
 }
 
-.text .content {
-	text-align: left;
-}
-
-.quote blockquote {
+.content blockquote:only-child {
 	font-family: 'Bodoni 72', 'Bodoni 11', Didot, Charter, Palatino, Palatino Linotype, Gentium Pluse,
 		Times New Roman, Times, Tinos, serif;
 	font-style: italic;
@@ -238,4 +239,11 @@ figcaption {
 	line-height: 3rem;
 	letter-spacing: -0.113rem;
 	color: var(--orange);
+	text-align: center;
+}
+
+.content p:only-child {
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+	text-align: center;
 }
