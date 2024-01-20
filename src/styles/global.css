@@ -230,7 +230,7 @@ figcaption {
 	color: var(--fg-muted);
 }
 
-.content blockquote:only-child {
+.content > blockquote:only-child {
 	font-family: 'Bodoni 72', 'Bodoni 11', Didot, Charter, Palatino, Palatino Linotype, Gentium Pluse,
 		Times New Roman, Times, Tinos, serif;
 	font-style: italic;
@@ -242,7 +242,7 @@ figcaption {
 	text-align: center;
 }
 
-.content p:only-child {
+.content > p:only-child {
 	font-size: 1.25rem;
 	line-height: 1.75rem;
 	text-align: center;
