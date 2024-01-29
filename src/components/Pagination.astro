@@ -3,7 +3,7 @@ const { page } = Astro.props;
 
 const prev = page.currentPage === 2 ? '/' : page.url.prev;
 const next = page.url.next;
-const total = Math.ceil(page.total / page.size)
+const total = Math.ceil(page.total / page.size);
 ---
 
 <nav>
@@ -39,7 +39,7 @@ const total = Math.ceil(page.total / page.size)
 		gap: var(--spacing-lg);
 	}
 	nav > * {
-		flex: 1 1 33%
+		flex: 1 1 33%;
 	}
 
 	nav > *:first-child {

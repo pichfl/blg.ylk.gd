@@ -9,14 +9,14 @@ const TagName = tagName;
 
 const html = marked(content);
 
-	const htmlSanitized = sanitizeHtml(html, {
-		allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure']),
-		allowedAttributes: Object.assign({}, sanitizeHtml.defaults.allowedAttributes, {
-			img: ['src', 'alt', 'title', 'width', 'height', 'data-*'],
-			a: ['href', 'name', 'target'],
-			figure: ['class', 'data-*'],
-		}),
-	});
+const htmlSanitized = sanitizeHtml(html, {
+	allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure']),
+	allowedAttributes: Object.assign({}, sanitizeHtml.defaults.allowedAttributes, {
+		img: ['src', 'alt', 'title', 'width', 'height', 'data-*'],
+		a: ['href', 'name', 'target'],
+		figure: ['class', 'data-*'],
+	}),
+});
 ---
 
 <TagName class="post">
