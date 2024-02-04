@@ -1,10 +1,11 @@
 ---
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Markdown from './Markdown.astro';
 ---
 
 <header class="top">
 	<img src="/head.jpg" alt="Florian Pichler" />
 
 	<h1 class="logo"><a href="/">{SITE_TITLE}</a></h1>
-	<p>{SITE_DESCRIPTION}</p>
+	<Markdown markdown={SITE_DESCRIPTION} />
 </header>

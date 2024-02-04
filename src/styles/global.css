@@ -8,8 +8,15 @@
 	--spacing-md: 1rem;
 	--spacing-lg: 1.5rem;
 	--spacing-xl: max(5vmin, 2rem);
-	--spacing-xxl: max(20vmin, 3.5rem);
+	--spacing-xxl: max(15vmin, 3.5rem);
 	--max-width: 34rem;
+}
+
+@media (min-width: 800px) {
+	:root {
+		--spacing-xl: max(5vmin, 3.5rem);
+		--spacing-xxl: max(18vmin, 5rem);
+	}
 }
 
 @supports (color: color(display-p3 1 1 1)) {
@@ -99,10 +106,12 @@ img {
 .end p {
 	margin: var(--spacing-md) auto;
 	color: var(--fg-muted);
+	
 }
 
 .top p {
-	max-width: 28rem;
+	max-width: var(--max-width);
+	text-wrap: balance;
 }
 
 .top nav {
@@ -120,10 +129,8 @@ img {
 	max-width: var(--max-width);
 }
 
-@media (min-width: 800px) {
-	:root {
-		--spacing-xl: max(10vmin, 5rem);
-	}
+.end * {
+	margin-inline: 0.15rem;
 }
 
 .tags {
