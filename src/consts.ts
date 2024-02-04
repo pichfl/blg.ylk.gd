@@ -5,4 +5,4 @@ export const SITE_TITLE = 'Flo goes on tangents';
 export const SITE_DESCRIPTION =
 	'Blogging for your amusement and my chance to remember things. Pictures & ramblings about tech, making, and baking.';
 export const API_HOST = 'https://cdn.ylk.gd/';
-export const PAGE_SIZE = 20;
+export const PAGE_SIZE = 12;
