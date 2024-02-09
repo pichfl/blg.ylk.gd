@@ -4,6 +4,7 @@
 import 'the-new-css-reset/css/reset.css';
 import '@fontsource-variable/jost/index.css';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
 	title: string;
@@ -12,7 +13,6 @@ export interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
 const { title, description, image } = Astro.props;
 ---
 
@@ -41,4 +41,7 @@ const { title, description, image } = Astro.props;
 	title="RSS"
 	href={new URL('feed.rss', Astro.site)}
 />
+{ (import.meta.env.MODE !== 'development') && 
 <script defer data-domain="blg.ylk.gd" data-api="/api/v1/event" src="/assets/plsbl.js"></script>
+}
+<ViewTransitions />

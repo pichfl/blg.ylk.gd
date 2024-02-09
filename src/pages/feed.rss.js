@@ -7,7 +7,7 @@ import truncate from 'minimal-utf8-truncate';
 
 const maxDescriptionLength = 120;
 
-export async function get(context) {
+export async function GET(context) {
 	const { posts } = await api();
 	return rss({
 		title: SITE_TITLE,
