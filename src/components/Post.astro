@@ -1,22 +1,9 @@
 ---
 import { format } from 'date-fns';
-import { marked } from 'marked';
-import sanitizeHtml from 'sanitize-html';
 
 const { post, tagName = 'div' } = Astro.props;
-const { title, date, content, path } = post;
+const { title, date, path, htmlSanitized } = post;
 const TagName = tagName;
-
-const html = marked(content);
-
-const htmlSanitized = sanitizeHtml(html, {
-	allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure']),
-	allowedAttributes: Object.assign({}, sanitizeHtml.defaults.allowedAttributes, {
-		img: ['src', 'alt', 'title', 'width', 'height', 'data-*'],
-		a: ['href', 'name', 'target'],
-		figure: ['class', 'data-*'],
-	}),
-});
 ---
 
 <TagName class="post">
