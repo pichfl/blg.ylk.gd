@@ -13,7 +13,9 @@
 		"lint:js": "eslint . --cache",
 		"lint:js:fix": "eslint . --fix",
 		"lint:md": "prettier --check \"**/*.md\"",
-		"lint:md:fix": "prettier --write \"**/*.md\""
+		"lint:md:fix": "prettier --write \"**/*.md\"",
+		"lint:css": "prettier --check \"**/*.css\"",
+		"lint:css:fix": "prettier --write \"**/*.css\""
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^2.1.1",

@@ -14,7 +14,7 @@ export const api = onetime(async () => {
 		htmlSanitized: sanitizeHtml(marked(post.content), {
 			allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'figure']),
 			allowedAttributes: Object.assign({}, sanitizeHtml.defaults.allowedAttributes, {
-				img: ['src', 'alt', 'title', 'width', 'height', 'data-*'],
+				img: ['src', 'alt', 'title', 'width', 'height', 'data-*', 'style'],
 				a: ['href', 'name', 'target'],
 				figure: ['class', 'data-*'],
 			}),

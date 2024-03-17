@@ -84,6 +84,11 @@ img {
 	height: auto;
 }
 
+img[style^='--ph'] {
+	background-image: var(--ph);
+	background-size: cover;
+}
+
 .top img {
 	display: block;
 	width: 6rem;
@@ -108,7 +113,6 @@ img {
 .end p {
 	margin: var(--spacing-md) auto;
 	color: var(--fg-muted);
-	
 }
 
 .top p {
