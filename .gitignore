@@ -57,3 +57,8 @@ Icon
 /vendor
 
 /node_modules
+
+/site/plugins/kirby-vite
+
+/content
+!/content/index.html
