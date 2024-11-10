@@ -1,0 +1,300 @@
+:root {
+	--bg: #fff;
+	--orange: #ff5500;
+	--fg: #0e243c;
+	--fg-muted: #93abc7;
+	--fg-loud: #3d2ca6;
+	--spacing-sm: 0.5rem;
+	--spacing-md: 1rem;
+	--spacing-lg: 1.5rem;
+	--spacing-xl: max(5vmin, 2rem);
+	--spacing-xxl: max(15vmin, 3.5rem);
+	--max-width: min(34rem, 100%);
+}
+
+@media (min-width: 800px) {
+	:root {
+		--spacing-xl: max(5vmin, 3.5rem);
+		--spacing-xxl: max(18vmin, 5rem);
+	}
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+	:root {
+		--orange: color(display-p3 1 0.3 0);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #17202a;
+		--orange: #ff5500;
+		--fg: #fff;
+		--fg-muted: #a4bad4;
+		--fg-loud: #6753ea;
+	}
+}
+
+html,
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: auto;
+	min-width: 0;
+}
+
+body {
+	padding: var(--spacing-xl);
+	background-color: var(--bg);
+	font-family:
+		Jost,
+		Futura,
+		Century Gothic,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji',
+		Segoe UI Symbol,
+		'Noto Color Emoji';
+	color: var(--fg);
+	text-align: center;
+}
+
+.end,
+main,
+main > * + * {
+	margin-top: var(--spacing-xxl);
+}
+
+.end a {
+	color: inherit;
+}
+
+a {
+	color: var(--fg-loud);
+}
+
+a:focus,
+a:hover {
+	color: var(--orange);
+}
+
+img {
+	width: auto;
+	height: auto;
+}
+
+img[style^='--ph'] {
+	background-image: var(--ph);
+	background-size: cover;
+}
+
+.top img {
+	display: block;
+	width: 6rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto var(--spacing-lg);
+}
+
+.logo {
+	font-size: 2rem;
+	line-height: 2rem;
+	letter-spacing: -0.01em;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.logo a {
+	color: inherit;
+}
+
+.top p,
+.end p {
+	margin: var(--spacing-md) auto;
+	color: var(--fg-muted);
+}
+
+.top p {
+	max-width: var(--max-width);
+	text-wrap: balance;
+}
+
+.top nav {
+	margin-top: var(--spacing-md);
+}
+
+.top nav ul {
+	display: flex;
+	gap: var(--spacing-md);
+}
+
+.top,
+.end {
+	margin-inline: auto;
+	max-width: var(--max-width);
+}
+
+.end * {
+	margin-inline: 0.15rem;
+}
+
+.tags {
+	margin-top: var(--spacing-sm);
+}
+
+.tags li {
+	display: inline;
+}
+
+.post header {
+	margin-bottom: var(--spacing-xl);
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.post footer {
+	margin-top: var(--spacing-lg);
+	color: var(--fg-muted);
+}
+
+.post footer a {
+	color: inherit;
+}
+
+.content {
+	text-wrap: balance;
+	text-align: left;
+}
+
+.content strong,
+.content b {
+	font-weight: 700;
+}
+
+.content em,
+.content i {
+	font-style: italic;
+}
+
+.content ul,
+.content ol {
+	padding-left: 1.5em;
+}
+
+.content ul {
+	list-style: '–';
+}
+
+.content ol {
+	list-style: decimal;
+}
+
+.content * + figure,
+.content * + p,
+.content * + ul,
+.content * + ol,
+.content * + table,
+.content * + pre {
+	margin-top: var(--spacing-md);
+}
+
+.content > :not(figure),
+.content figcaption {
+	margin-inline: auto;
+	max-width: var(--max-width);
+}
+
+pre {
+	max-width: 100%;
+	overflow: auto;
+}
+
+img:not(:is(p, li, figure) > img) {
+	display: block;
+}
+
+@media (max-width: 800px) {
+	figure {
+		margin-inline: calc(-1 * var(--spacing-xl));
+	}
+}
+
+.content * + figure,
+.content img:not(:is(p, li, figure) > img) {
+	margin-top: var(--spacing-xl);
+}
+
+.content figure + *,
+.content img:not(:is(p, li, figure) > img) + * {
+	margin-top: var(--spacing-xl);
+}
+
+figure img,
+.content img:only-child,
+.content img:not(:is(p, li, figure) > img) {
+	display: block;
+	margin-inline: auto;
+	width: 100%;
+	max-width: 960px;
+	height: auto;
+}
+
+.content img[data-orientation='portrait'],
+.content img[data-orientation='square'] {
+	max-width: var(--max-width);
+	height: auto;
+}
+
+figure[data-variant*='noresize'] img {
+	width: auto;
+}
+
+figcaption {
+	text-align: center;
+	margin-top: 0;
+	padding: var(--spacing-sm) 0;
+	color: var(--fg-muted);
+}
+
+.content > blockquote:only-child {
+	font-family:
+		'Bodoni 72',
+		'Bodoni 11',
+		Didot,
+		Charter,
+		Palatino,
+		Palatino Linotype,
+		Gentium Pluse,
+		Times New Roman,
+		Times,
+		Tinos,
+		serif;
+	font-style: italic;
+	font-size: 3.5rem;
+	font-weight: 400;
+	line-height: 3rem;
+	letter-spacing: -0.113rem;
+	color: var(--orange);
+	text-align: center;
+}
+
+.pagination {
+  display: flex;
+  margin-inline: auto;
+  width: var(--max-width);
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+.pagination > * {
+  flex: 1 1 33%;
+}
+
+.pagination > :first-child {
+  text-align: left;
+}
+
+.pagination > :last-child {
+  text-align: right;
+}
+

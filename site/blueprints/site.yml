@@ -1,0 +1,13 @@
+title: Site
+
+sections:
+  blog:
+    type: pages
+    template: post
+    limit: 10
+    sortBy: slug desc
+    create:
+      - post
+  pages:
+    type: pages
+    templatesIgnore: post
