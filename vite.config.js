@@ -12,7 +12,7 @@ export default ({ mode }) => ({
   build: {
     // Where your manifest an bundled assets will be placed. This example
     // assumes you use a public folder structure.
-    outDir: 'public/dist',
+    outDir: '../assets/dist',
     assetsDir: 'assets',
     emptyOutDir: true,
 
@@ -22,7 +22,7 @@ export default ({ mode }) => ({
     // `main.js` as an entry and import the CSS in your JS file. In this case
     // you would use the JS file name: `vite()->css('main.js')`.
     rollupOptions: {
-      input: ['main.js'],
+      input: ['src/main.js'],
     },
   },
 

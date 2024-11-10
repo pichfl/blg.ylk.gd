@@ -62,3 +62,6 @@ Icon
 
 /content
 !/content/index.html
+
+/assets/dist
+/site/config/vite.config.php
