@@ -60,7 +60,7 @@ Icon
 
 /site/plugins/kirby-vite
 
-/content
+/content/*
 !/content/index.html
 
 /assets/dist
