@@ -6,7 +6,7 @@
         </a>
     <?php else: ?>
         <span>&nbsp;</span>
-    <?php endif ?>  
+    <?php endif; ?>  
 
     <span>
       <?= $collection->pagination()->page() ?> / <?= $collection->pagination()->pages() ?>
@@ -18,6 +18,6 @@
         </a>
     <?php else: ?>
         <span>&nbsp;</span>
-    <?php endif ?>
+    <?php endif; ?>
   </nav>
-<?php endif ?>
+<?php endif; ?>

@@ -65,3 +65,4 @@ Icon
 
 /assets/dist
 /site/config/vite.config.php
+/.dev

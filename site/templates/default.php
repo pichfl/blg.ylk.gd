@@ -1,7 +1,7 @@
-<?php snippet('top') ?>
+<?php snippet('top'); ?>
 
 <main>
   X
 </main>
 
-<?php snippet('end') ?>
+<?php snippet('end'); ?>

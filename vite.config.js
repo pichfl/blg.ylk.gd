@@ -1,5 +1,5 @@
 // vite.config.js
-import kirby from 'vite-plugin-kirby'
+import kirby from 'vite-plugin-kirby';
 
 export default ({ mode }) => ({
   root: 'src',
@@ -41,4 +41,4 @@ export default ({ mode }) => ({
       kirbyConfigDir: 'site/config', // default
     }),
   ],
-})
+});

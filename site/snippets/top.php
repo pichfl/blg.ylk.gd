@@ -1,6 +1,5 @@
-<?php 
-	$is_debug = $kirby->options()['debug'];
-?><!DOCTYPE html>
+<?php
+$is_debug = $kirby->options()['debug']; ?><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -26,7 +25,7 @@
 
 <?php if (!$is_debug): ?>
 	<script defer data-domain="blg.ylk.gd" data-api="/api/v1/event" src="/assets/plsbl.js" ></script>
-<?php endif ?>
+<?php endif; ?>
 </head>
 <body>
-	<?php snippet('header') ?>
+	<?php snippet('header'); ?>
