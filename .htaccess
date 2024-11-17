@@ -34,10 +34,6 @@ RewriteRule ^site/(.*) index.php [L]
 
 # block direct access to Kirby and the Panel sources
 RewriteRule ^kirby/(.*) index.php [L]
-
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
   
 RewriteRule ^plsbl/(.*) plsblr/index.php [QSA,L]
 
