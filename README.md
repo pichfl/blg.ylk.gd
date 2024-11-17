@@ -4,8 +4,8 @@ Uses [Kirby](https://getkirby.com).
 
 ## Development
 
-- Node & NPM (npm for compabilitly reasons)
-- PHP & Composer
+-   Node & NPM (npm for compabilitly reasons)
+-   PHP & Composer
 
 ```sh
 npm install
