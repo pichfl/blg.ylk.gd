@@ -6,7 +6,7 @@ return [
             'width' => 'auto',
             'height' => 'auto',
             'alt' => '',
-        ]
+        ],
     ],
-    'debug'  => true
+    'debug' => false,
 ];
