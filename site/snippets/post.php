@@ -6,7 +6,13 @@
   <?php endif; ?>
 
 	<div class="content">
+		<?php if ($page->text()->isNotEmpty()): ?>
     <?= $page->text()->kt() ?>
+		<?php else: ?>
+		<?php foreach ($page->content()->content()->toBlocks() as $block): ?>
+			<?= $block ?>
+		<?php endforeach; ?>
+		<?php endif; ?>
   </div>
 
 	<footer>

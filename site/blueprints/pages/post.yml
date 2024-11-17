@@ -7,9 +7,15 @@ columns:
       fields:
         type: fields
         fields:
+          content:
+            type: blocks
+            fieldsets:
+              - text
+              - image
+              - code
           text:
             type: textarea
-            size: huge
+            size: small
   sidebar:
     width: 1/3
     sections:
