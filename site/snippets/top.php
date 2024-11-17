@@ -24,7 +24,7 @@ $is_debug = $kirby->options()['debug']; ?><!DOCTYPE html>
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <?php if (!$is_debug): ?>
-	<script defer data-domain="blg.ylk.gd" data-api="/api/v1/event" src="/assets/plsbl.js" ></script>
+	<script defer data-domain="blg.ylk.gd" data-api="/plsbl/api/event" src="/plsbl/script.js"></script>
 <?php endif; ?>
 </head>
 <body>
