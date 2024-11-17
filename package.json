@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "concurrently --names vite,composer -c magenta,cyan -- \"npm:dev\" \"npm:kirby\"",
     "dev": "vite",
     "build": "vite build",
+    "kirby": "composer run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --check \"**/*.{css,js,php,md}\"",
     "lint:fix": "prettier --write \"**/*.{css,js,php,md}\""
