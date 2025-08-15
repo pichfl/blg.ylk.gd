@@ -58,7 +58,8 @@ Icon
 
 /node_modules
 
-/site/plugins/kirby-vite
+/site/plugins/
+!/site/plugins/custom-tags
 
 /content/*
 !/content/index.html
