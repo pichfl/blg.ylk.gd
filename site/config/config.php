@@ -13,8 +13,6 @@ return [
 			'pattern' => 'feed.(rss|json)', // atom generation seems to be broken
 			'method' => 'GET',
 			'action' => function ($type) {
-				echo "feed/$type";
-
 				$options = [
 					'title' => 'Flo’s latest tangents',
 					'description' =>
