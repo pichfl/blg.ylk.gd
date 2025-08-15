@@ -22,6 +22,8 @@ $is_debug = $kirby->options()['debug']; ?><!DOCTYPE html>
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+<link rel="alternate" type="application/rss+xml" title="Recent Posts RSS" href="<?= $site->url() ?>/feed.rss" />
+<link rel="alternate" type="application/feed+json" title="Recents Posts JSON Feed" href="<?= $site->url() ?>/feed.json" />
 
 <?php if (!$is_debug): ?>
 	<script defer data-domain="blg.ylk.gd" data-api="/plsbl/api/event" src="/plsbl/script.js"></script>
