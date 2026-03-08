@@ -1,19 +1,27 @@
 ---
-import Root from '../layouts/Root.astro';
-import Post from '../components/Post.astro';
-import { api } from '../lib/api.js';
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import Base from "../components/Base.astro";
+import Post from "../components/Post.astro";
+import { format } from "date-fns";
 
 export async function getStaticPaths() {
-	const { posts } = await api();
+  const posts = await getCollection("post");
 
-	return posts.map((post) => ({ params: { slug: post.path }, props: { post } }));
+  console.log(posts);
+
+  return posts.map((post) => ({
+    params: { slug: format(post.data.date, "yyyy-MM-dd-HHmm") },
+    props: post,
+  }));
 }
 
-const { post } = Astro.props;
+type Props = CollectionEntry<"post">;
+
+const post = Astro.props;
+
+console.log(post.id);
 ---
 
-<Root>
-	<Post {post} />
-
-	<p><a href="/">&larr; Home</a></p>
-</Root>
+<Base title="foo" description="bar">
+  <Post element="div" id={post.id} slot="main" />
+</Base>

@@ -1,27 +1,45 @@
 ---
-import { format } from 'date-fns';
+import FormattedDate from "./FormattedDate.astro";
+import { getEntry, render } from "astro:content";
+import { format } from "date-fns";
 
-const { post, tagName = 'div' } = Astro.props;
-const { title, date, path, htmlSanitized } = post;
-const TagName = tagName;
+interface Props {
+  element: string;
+  id: string;
+}
+
+const { element = "article", id } = Astro.props;
+const post = await getEntry("post", id);
+
+if (!post) {
+  throw new Error(`Unable to find post:${id}`);
+}
+
+const { title, date } = post.data;
+const rendered = await render(post);
+
+const Element = element;
+const { Content } = rendered;
 ---
 
-<TagName class="post">
-	{
-		title && (
-			<header>
-				<h2 set:html={title} />
-			</header>
-		)
-	}
+<Element class="post">
+  {
+    title && (
+      <header>
+        <h2>{title}</h2>
+      </header>
+    )
+  }
 
-	<div class="content" set:html={htmlSanitized} />
+  <div class="content">
+    <Content />
+  </div>
 
-	<footer>
-		<p>
-			<a rel="permalink" href={'/' + path}
-				><time datetime={date}>{format(date, 'dd/MM/yyyy')}</time></a
-			>
-		</p>
-	</footer>
-</TagName>
+  <footer>
+    <p>
+      <a rel="permalink" href={format(date, "yyyy-MM-dd-HHmm")}>
+        <FormattedDate {date} />
+      </a>
+    </p>
+  </footer>
+</Element>

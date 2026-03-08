@@ -107,6 +107,7 @@ img[style^='--ph'] {
 
 .logo a {
 	color: inherit;
+	text-decoration: none;
 }
 
 .top p,
@@ -277,4 +278,23 @@ figcaption {
 	letter-spacing: -0.113rem;
 	color: var(--orange);
 	text-align: center;
+}
+
+.pagination {
+	display: flex;
+	margin-inline: auto;
+	width: var(--max-width);
+	justify-content: space-between;
+	gap: var(--spacing-lg);
+}
+.pagination > * {
+	flex: 1 1 33%;
+}
+
+.pagination > :first-child {
+	text-align: left;
+}
+
+.pagination > :last-child {
+	text-align: right;
 }

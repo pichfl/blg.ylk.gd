@@ -1,25 +1,18 @@
 ---
-import Root from '../layouts/Root.astro';
-import List from '../components/List.astro';
-import { api } from '../lib/api.js';
-import Pagination from '../components/Pagination.astro';
-import { PAGE_SIZE } from '../consts';
+import Base from "../components/Base.astro";
+import Post from "../components/Post.astro";
 
-const { posts } = await api();
-const page = {
-	currentPage: 1,
-	total: posts.length,
-	size: PAGE_SIZE,
-	url: {
-		next: '/2',
-	},
-};
+import { getCollection } from "astro:content";
+
+const allPosts = (await getCollection("post")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const posts = allPosts.slice(0, 3);
 ---
 
-<Root>
-	<main>
-		<List posts={posts.slice(0, PAGE_SIZE)} />
-
-		{posts.length > PAGE_SIZE && <Pagination {page} />}
-	</main>
-</Root>
+<Base title="foo" description="bar">
+  <Fragment slot="main">
+    {posts.map(({ id }) => <Post element="article" {id} />)}
+  </Fragment>
+  <slot />
+</Base>
