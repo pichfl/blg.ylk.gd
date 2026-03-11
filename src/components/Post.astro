@@ -17,12 +17,12 @@ if (!post) {
 
 const { title, date } = post.data;
 const rendered = await render(post);
+const { Content } = rendered;
 
 const Element = element;
-const { Content } = rendered;
 ---
 
-<Element class="post">
+<Element class="post" data-post-id={id}>
   {
     title && (
       <header>

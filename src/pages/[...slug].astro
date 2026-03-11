@@ -7,8 +7,6 @@ import { format } from "date-fns";
 export async function getStaticPaths() {
   const posts = await getCollection("post");
 
-  console.log(posts);
-
   return posts.map((post) => ({
     params: { slug: format(post.data.date, "yyyy-MM-dd-HHmm") },
     props: post,

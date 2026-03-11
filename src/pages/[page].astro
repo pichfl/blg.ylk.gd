@@ -1,0 +1,26 @@
+---
+import Base from "../components/Base.astro";
+import Post from "../components/Post.astro";
+import Pagination from "../components/Pagination.astro";
+
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (await getCollection("post")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  )
+
+  return paginate(posts, { pageSize: 2 });
+}
+
+const { page } = Astro.props;
+---
+
+<Base title="foo" description="bar">
+  <Fragment slot="main">
+    {page.data.map(({ id }) => <Post element="article" {id} />)}
+
+    <Pagination {page} />
+  </Fragment>
+  <slot />
+</Base>

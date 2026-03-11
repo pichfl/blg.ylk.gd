@@ -47,7 +47,7 @@ body {
 	padding: var(--spacing-xl);
 	background-color: var(--bg);
 	font-family:
-		Jost,
+		'Jost Variable',
 		Futura,
 		Century Gothic,
 		Arial,
@@ -58,6 +58,8 @@ body {
 		'Noto Color Emoji';
 	color: var(--fg);
 	text-align: center;
+	font-weight: 500;
+	font-feature-settings: 'ss01' 1;
 }
 
 .end,
@@ -287,6 +289,7 @@ figcaption {
 	justify-content: space-between;
 	gap: var(--spacing-lg);
 }
+
 .pagination > * {
 	flex: 1 1 33%;
 }
