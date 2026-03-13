@@ -1,17 +1,32 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
 
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { PAGE_SIZE, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { postSchema } from '../content.config';
 
 export async function GET(context) {
-	const posts = await getCollection('post');
-	return rss({
+  const importedPosts = import.meta.glob('../content/posts/**/*.md', { eager: true });
+  const posts = Object.values(importedPosts).map(post => ({
+    ...post,
+    data: postSchema.parse(post.frontmatter)
+  })).sort((a, b) => b.data.date - a.data.date).slice(0, PAGE_SIZE);
+
+  return rss({
+    // TODO: Style feed?
+    // stylesheet: '/rss/pretty.xsl',
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
 		site: context.site,
-		items: posts.map((post) => ({
-			...post.data,
-			link: `/post/${post.id}/`,
-		})),
+    items: await Promise.all(posts.map(async (post) => {
+      const { title, date: pubDate, slug } = post.data;
+
+      console.log(post);
+
+      return {
+        title,
+        pubDate,
+        link: `/${slug}/`,
+        content: await post.compiledContent(),
+      };
+    })),
 	});
 }

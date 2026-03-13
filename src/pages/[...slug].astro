@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const posts = await getCollection("post");
 
   return posts.map((post) => ({
-    params: { slug: format(post.data.date, "yyyy-MM-dd-HHmm") },
+    params: { slug: post.data.slug },
     props: post,
   }));
 }
@@ -16,10 +16,15 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"post">;
 
 const post = Astro.props;
-
-console.log(post.id);
+const date = format(post.data.date, 'd. MMM yyyy');
+const title = post.data.title || `Untitled ${date}`;
+const description = `Note from ${date}`;
 ---
 
-<Base title="foo" description="bar">
-  <Post element="div" id={post.id} slot="main" />
+<Base {title} {description}>
+  <Post element="div" id={post.id} slot="main">
+    <small aria-hidden="true" slot="footer">
+      {post.id}
+    </small>
+  </Post>
 </Base>

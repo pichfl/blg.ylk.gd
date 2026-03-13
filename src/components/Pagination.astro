@@ -6,7 +6,7 @@ const next = page.url.next;
 const total = Math.ceil(page.total / page.size);
 ---
 
-<nav>
+<nav class="pagination">
 	{
 		prev ? (
 			<a href={prev}>
@@ -29,24 +29,3 @@ const total = Math.ceil(page.total / page.size);
 		)
 	}
 </nav>
-
-<style>
-	nav {
-		display: flex;
-		margin-inline: auto;
-		width: var(--max-width);
-		justify-content: space-between;
-		gap: var(--spacing-lg);
-	}
-	nav > * {
-		flex: 1 1 33%;
-	}
-
-	nav > *:first-child {
-		text-align: left;
-	}
-
-	nav > *:last-child {
-		text-align: right;
-	}
-</style>

@@ -15,7 +15,7 @@ if (!post) {
   throw new Error(`Unable to find post:${id}`);
 }
 
-const { title, date } = post.data;
+const { title, date, slug } = post.data;
 const rendered = await render(post);
 const { Content } = rendered;
 
@@ -26,7 +26,7 @@ const Element = element;
   {
     title && (
       <header>
-        <h2>{title}</h2>
+        <h2 set:html={title}></h2>
       </header>
     )
   }
@@ -37,9 +37,10 @@ const Element = element;
 
   <footer>
     <p>
-      <a rel="permalink" href={format(date, "yyyy-MM-dd-HHmm")}>
+      <a rel="permalink" href={`/${slug}/`}>
         <FormattedDate {date} />
       </a>
     </p>
+    <slot name="footer"></slot>
   </footer>
 </Element>

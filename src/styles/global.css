@@ -8,7 +8,8 @@
 	--spacing-md: 1rem;
 	--spacing-lg: 1.5rem;
 	--spacing-xl: max(5vmin, 2rem);
-	--spacing-xxl: max(15vmin, 3.5rem);
+	--spacing-xxl: max(8.75vmin, 3.5rem);
+	--spacing-2xl: max(15.3125vmin, 6.125rem);
 	--max-width: min(34rem, 100%);
 }
 
@@ -44,7 +45,7 @@ body {
 }
 
 body {
-	padding: var(--spacing-xl);
+	padding: var(--spacing-xxl) var(--spacing-xl);
 	background-color: var(--bg);
 	font-family:
 		'Jost Variable',
@@ -57,19 +58,20 @@ body {
 		Segoe UI Symbol,
 		'Noto Color Emoji';
 	color: var(--fg);
-	text-align: center;
 	font-weight: 500;
 	font-feature-settings: 'ss01' 1;
+	text-align: center;
 }
 
 .end,
 main,
 main > * + * {
-	margin-top: var(--spacing-xxl);
+	margin-top: var(--spacing-2xl);
 }
 
 .end a {
 	color: inherit;
+	text-decoration: none;
 }
 
 a {
@@ -86,9 +88,8 @@ img {
 	height: auto;
 }
 
-img[style^='--ph'] {
-	background-image: var(--ph);
-	background-size: cover;
+p {
+	text-wrap: pretty;
 }
 
 .top img {
@@ -120,7 +121,6 @@ img[style^='--ph'] {
 
 .top p {
 	max-width: var(--max-width);
-	text-wrap: balance;
 }
 
 .top nav {
@@ -157,12 +157,19 @@ img[style^='--ph'] {
 }
 
 .post footer {
-	margin-top: var(--spacing-lg);
+	margin-top: 1lh;
 	color: var(--fg-muted);
+}
+
+.post footer small {
+	display: block;
+	font-size: 0.75em;
+	opacity: 0.5;
 }
 
 .post footer a {
 	color: inherit;
+	text-decoration: none;
 }
 
 .content {
@@ -199,47 +206,54 @@ img[style^='--ph'] {
 .content * + ol,
 .content * + table,
 .content * + pre {
-	margin-top: var(--spacing-md);
+	margin-top: 1lh;
 }
 
+.post header,
+.post footer,
 .content > :not(figure),
 .content figcaption {
 	margin-inline: auto;
 	max-width: var(--max-width);
 }
 
-pre {
+.content pre {
 	max-width: 100%;
 	overflow: auto;
 }
 
-img:not(:is(p, li, figure) > img) {
+.content img:not(:is(p, li, figure) > img) {
 	display: block;
 }
 
+.content p:has(img:only-child) {
+	max-width: unset;
+}
+
 @media (max-width: 800px) {
-	figure {
+	.content figure {
 		margin-inline: calc(-1 * var(--spacing-xl));
 	}
 }
 
 .content * + figure,
+.content * + p:has(img:only-child),
 .content img:not(:is(p, li, figure) > img) {
 	margin-top: var(--spacing-xl);
 }
 
 .content figure + *,
+.content p:has(img:only-child) + *,
 .content img:not(:is(p, li, figure) > img) + * {
 	margin-top: var(--spacing-xl);
 }
 
-figure img,
+.content figure img,
 .content img:only-child,
 .content img:not(:is(p, li, figure) > img) {
 	display: block;
 	margin-inline: auto;
-	width: 100%;
-	max-width: 960px;
+	max-width: min(100%, 960px);
 	height: auto;
 }
 
@@ -249,11 +263,7 @@ figure img,
 	height: auto;
 }
 
-figure[data-variant*='noresize'] img {
-	width: auto;
-}
-
-figcaption {
+.content figcaption {
 	text-align: center;
 	margin-top: 0;
 	padding: var(--spacing-sm) 0;
@@ -300,4 +310,8 @@ figcaption {
 
 .pagination > :last-child {
 	text-align: right;
+}
+
+.pagination a {
+	text-decoration: none;
 }
