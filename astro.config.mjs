@@ -17,9 +17,4 @@ export default defineConfig({
 	markdown: {
 		rehypePlugins: [rehypeRewriteImages],
 	},
-	vite: {
-		resolve: {
-			preserveSymlinks: true,
-		},
-	},
 });
