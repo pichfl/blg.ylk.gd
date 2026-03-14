@@ -19,8 +19,6 @@ export async function GET(context) {
     items: await Promise.all(posts.map(async (post) => {
       const { title, date: pubDate, slug } = post.data;
 
-      console.log(post);
-
       return {
         title,
         pubDate,
