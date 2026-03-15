@@ -37,7 +37,10 @@ function updateAltAttribute(img, parent, grandparent) {
 			const lines = textNode.value.split('\n');
 			const altLine = lines.find((l) => isAltTextNode({ type: 'text', value: l }));
 			alt = parseAltTextNode({ type: 'text', value: altLine });
-			const remaining = lines.filter((l) => l !== altLine).join('\n').trim();
+			const remaining = lines
+				.filter((l) => l !== altLine)
+				.join('\n')
+				.trim();
 			if (remaining) {
 				textNode.value = remaining;
 			} else {
