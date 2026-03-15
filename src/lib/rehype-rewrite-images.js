@@ -33,8 +33,16 @@ function updateAltAttribute(img, parent, grandparent) {
 		);
 
 		if (paragraph) {
-			alt = parseAltTextNode(paragraph.children[0]);
-			grandparent.children.splice(grandparent.children.indexOf(paragraph), 1);
+			const textNode = paragraph.children[0];
+			const lines = textNode.value.split('\n');
+			const altLine = lines.find((l) => isAltTextNode({ type: 'text', value: l }));
+			alt = parseAltTextNode({ type: 'text', value: altLine });
+			const remaining = lines.filter((l) => l !== altLine).join('\n').trim();
+			if (remaining) {
+				textNode.value = remaining;
+			} else {
+				grandparent.children.splice(grandparent.children.indexOf(paragraph), 1);
+			}
 		}
 	}
 
