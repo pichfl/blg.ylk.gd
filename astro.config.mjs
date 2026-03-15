@@ -17,4 +17,7 @@ export default defineConfig({
 	markdown: {
 		rehypePlugins: [rehypeRewriteImages],
 	},
+	experimental: {
+		rustCompiler: true,
+	},
 });
