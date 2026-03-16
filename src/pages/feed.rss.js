@@ -14,24 +14,32 @@ export async function GET(context) {
 		.sort((a, b) => b.data.date - a.data.date)
 		.slice(0, PAGE_SIZE);
 
+	const items = await Promise.all(
+		posts.map(async (post) => {
+			const { title, date: pubDate, slug } = post.data;
+			const { frontmatter } = post;
+
+			return {
+				title: he.encode(he.decode(title || '<untitled>'), { decimal: true }),
+				pubDate,
+				link: `/${slug}/`,
+				description:
+					frontmatter.images?.length > 0
+						? frontmatter.images.length === 1
+							? 'at least one picture'
+							: `at least ${frontmatter.images.length} pictures`
+						: 'just text',
+				content: await post.compiledContent(),
+			};
+		})
+	);
+
 	return rss({
 		// TODO: Style feed?
 		// stylesheet: '/rss/pretty.xsl',
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
 		site: context.site,
-		items: await Promise.all(
-			posts.map(async (post) => {
-        const { title, date: pubDate, slug } = post.data;
-
-				return {
-					title: he.encode(he.decode(title || '<untitled>'), { decimal: true }),
-					pubDate,
-          link: `/${slug}/`,
-					description: '',
-					content: await post.compiledContent(),
-				};
-			})
-		),
+		items,
 	});
 }

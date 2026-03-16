@@ -21,8 +21,8 @@ export default defineConfig({
 	},
 	experimental: {
 		rustCompiler: true,
-  },
-  build: {
-    assetsPrefix: site,
+	},
+	build: {
+		assetsPrefix: site,
 	},
 });
