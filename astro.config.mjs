@@ -6,18 +6,23 @@ import { defineConfig } from 'astro/config';
 
 import { rehypeRewriteImages } from './src/lib/rehype-rewrite-images.js';
 
+const site = 'https://blg.ylk.gd';
+
 // https://astro.build/config
 export default defineConfig({
 	devToolbar: {
 		enabled: false,
 	},
 	output: 'static',
-	site: 'https://blg.ylk.gd',
+	site,
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		rehypePlugins: [rehypeRewriteImages],
 	},
 	experimental: {
 		rustCompiler: true,
+  },
+  build: {
+    assetsPrefix: site,
 	},
 });

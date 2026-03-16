@@ -1,4 +1,5 @@
 import rss from '@astrojs/rss';
+import he from 'he';
 
 import { PAGE_SIZE, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { postSchema } from '../content.config';
@@ -21,12 +22,13 @@ export async function GET(context) {
 		site: context.site,
 		items: await Promise.all(
 			posts.map(async (post) => {
-				const { title, date: pubDate, slug } = post.data;
+        const { title, date: pubDate, slug } = post.data;
 
 				return {
-					title,
+					title: he.encode(he.decode(title || '<untitled>'), { decimal: true }),
 					pubDate,
-					link: `/${slug}/`,
+          link: `/${slug}/`,
+					description: '',
 					content: await post.compiledContent(),
 				};
 			})
