@@ -1,5 +1,6 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
+import PostContent from "./PostContent.astro";
 import { getEntry, render } from "astro:content";
 import type { HTMLTag } from "astro/types";
 
@@ -17,8 +18,6 @@ if (!post) {
 
 const { title, date, slug } = post.data;
 const rendered = await render(post);
-const { Content } = rendered;
-
 const Element = element;
 ---
 
@@ -31,16 +30,51 @@ const Element = element;
 		)
 	}
 
-  <div class="content">
-    <Content />
-  </div>
+	<PostContent {rendered} />
 
 	<footer>
 		<p>
 			<a class="u-url" rel="permalink" href={`/${slug}/`}>
 				<FormattedDate {date} />
 			</a>
+
+			<a
+				class="p-author h-card"
+				href="https://florianpichler.de"
+				rel="author"
+				hidden>Florian Pichler</a
+			>
 		</p>
 		<slot name="footer" />
 	</footer>
 </Element>
+
+<style>
+header,
+	 footer {
+		margin-inline: auto;
+		max-width: var(--max-width);
+	}
+
+	header {
+		margin-bottom: var(--spacing-xl);
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
+
+	footer {
+		margin-top: 1lh;
+		color: var(--fg-muted);
+	}
+
+	footer small {
+		display: block;
+		font-size: 0.75em;
+		opacity: 0.5;
+	}
+
+	footer a {
+		color: inherit;
+		text-decoration: none;
+	}
+</style>

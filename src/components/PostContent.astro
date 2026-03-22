@@ -1,0 +1,136 @@
+---
+import type { RenderResult } from 'astro:content';
+
+
+interface Props {
+	rendered: RenderResult;
+}
+
+const { Content } = Astro.props.rendered;
+---
+
+<div class="e-content">
+	<slot>
+		<Content />
+	</slot>
+</div>
+
+<style is:global>
+  .e-content {
+		text-wrap: balance;
+		text-align: left;
+	}
+
+	.e-content strong,
+	.e-content b {
+		font-weight: 700;
+	}
+
+	.e-content em,
+	.e-content i {
+		font-style: italic;
+	}
+
+	.e-content ul,
+	.e-content ol {
+		padding-left: 1.5em;
+	}
+
+	.e-content ul {
+		list-style: '–';
+	}
+
+	.e-content ol {
+		list-style: decimal;
+	}
+
+	.e-content * + figure,
+	.e-content * + p,
+	.e-content * + ul,
+	.e-content * + ol,
+	.e-content * + table,
+	.e-content * + pre {
+		margin-top: 1lh;
+	}
+
+	.e-content > :not(figure),
+	.e-content figcaption {
+		margin-inline: auto;
+		max-width: var(--max-width);
+	}
+
+	.e-content pre {
+		max-width: 100%;
+		overflow: auto;
+	}
+
+	.e-content img:not(:is(p, li, figure) > img) {
+		display: block;
+	}
+
+	.e-content p:has(img:only-child) {
+		max-width: unset;
+	}
+
+	@media (max-width: 800px) {
+		.e-content figure {
+			margin-inline: calc(-1 * var(--spacing-xl));
+		}
+	}
+
+	.e-content * + figure,
+	.e-content * + p:has(img:only-child),
+	.e-content img:not(:is(p, li, figure) > img) {
+		margin-top: var(--spacing-xl);
+	}
+
+	.e-content figure + *,
+	.e-content p:has(img:only-child) + *,
+	.e-content img:not(:is(p, li, figure) > img) + * {
+		margin-top: var(--spacing-xl);
+	}
+
+	.e-content figure img,
+	.e-content img:only-child,
+	.e-content img:not(:is(p, li, figure) > img) {
+		display: block;
+		margin-inline: auto;
+		max-width: min(100%, 960px);
+		height: auto;
+	}
+
+	.e-content img[data-orientation='portrait'],
+	.e-content img[data-orientation='square'] {
+		max-width: var(--max-width);
+		height: auto;
+	}
+
+	.e-content figcaption {
+		text-align: center;
+		margin-top: 0;
+		padding: var(--spacing-sm) 0;
+		color: var(--fg-muted);
+	}
+
+	.e-content > blockquote:only-child {
+		font-family:
+			'Bodoni 72',
+			'Bodoni 11',
+			Didot,
+			Charter,
+			Palatino,
+			Palatino Linotype,
+			Gentium Pluse,
+			Times New Roman,
+			Times,
+			Tinos,
+			serif;
+		font-style: italic;
+		font-size: 3.5rem;
+		font-weight: 400;
+		line-height: 3rem;
+		letter-spacing: -0.113rem;
+		color: var(--orange);
+		text-align: center;
+	}
+</style>

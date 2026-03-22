@@ -29,3 +29,31 @@ const total = Math.ceil(page.total / page.size);
 		)
 	}
 </nav>
+
+
+<style>
+	.pagination {
+		display: flex;
+		margin-inline: auto;
+		width: var(--max-width);
+		justify-content: space-between;
+		gap: var(--spacing-lg);
+	}
+
+	.pagination > * {
+		flex: 1 1 33%;
+	}
+
+	.pagination > :first-child {
+		text-align: left;
+	}
+
+	.pagination > :last-child {
+		text-align: right;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+</style>

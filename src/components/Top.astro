@@ -4,7 +4,7 @@ import Portrait from "../assets/florian-pichler.jpg";
 import { Image } from "astro:assets";
 ---
 
-<header class="top">
+<header class="h-card">
 	<Image
 		class="u-photo"
 		src={Portrait}
@@ -16,7 +16,49 @@ import { Image } from "astro:assets";
 		decoding="async"
 	/>
 
-        <h1 class="logo"><a href="/">{SITE_TITLE}</a></h1>
-        <p class="description">{SITE_DESCRIPTION}</p>
-    </a>
+	<h1 class="p-name"><a href="/" class="u-url">{SITE_TITLE}</a></h1>
+	<p class="p-note">{SITE_DESCRIPTION}</p>
 </header>
+
+<style>
+	.h-card {
+		margin-inline: auto;
+		max-width: var(--max-width);
+	}
+
+	.u-photo {
+		display: block;
+		width: 6rem;
+		border-radius: 50%;
+		overflow: hidden;
+		margin: 0 auto var(--spacing-lg);
+	}
+
+	.p-name {
+		font-size: 2rem;
+		line-height: 2rem;
+		letter-spacing: -0.01em;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+	.p-name a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	p {
+		max-width: var(--max-width);
+		margin: var(--spacing-md) auto;
+		color: var(--fg-muted);
+	}
+
+	nav {
+		margin-top: var(--spacing-md);
+	}
+
+	nav ul {
+		display: flex;
+		gap: var(--spacing-md);
+	}
+</style>
