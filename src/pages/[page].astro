@@ -7,21 +7,21 @@ import { getCollection } from "astro:content";
 import { PAGE_SIZE } from "../consts";
 
 export async function getStaticPaths({ paginate }) {
-  const posts = (await getCollection("post")).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-  )
+	const posts = (await getCollection("post")).sort(
+		(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+	);
 
-  return paginate(posts, { pageSize: PAGE_SIZE });
+	return paginate(posts, { pageSize: PAGE_SIZE });
 }
 
 const { page } = Astro.props;
 ---
 
 <Base title={`Page ${page.currentPage}`} description="bar">
-  <Fragment slot="main">
-    {page.data.map(({ id }) => <Post element="article" {id} />)}
+	<Fragment slot="main">
+		{page.data.map(({ id }) => <Post element="article" {id} />)}
 
-    <Pagination {page} />
-  </Fragment>
-  <slot />
+		<Pagination {page} />
+	</Fragment>
+	<slot />
 </Base>

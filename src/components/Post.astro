@@ -1,18 +1,18 @@
 ---
 import FormattedDate from "./FormattedDate.astro";
 import { getEntry, render } from "astro:content";
-import { format } from "date-fns";
+import type { HTMLTag } from "astro/types";
 
 interface Props {
-  element: string;
-  id: string;
+	element: HTMLTag;
+	id: string;
 }
 
 const { element = "article", id } = Astro.props;
 const post = await getEntry("post", id);
 
 if (!post) {
-  throw new Error(`Unable to find post:${id}`);
+	throw new Error(`Unable to find post:${id}`);
 }
 
 const { title, date, slug } = post.data;
@@ -22,25 +22,25 @@ const { Content } = rendered;
 const Element = element;
 ---
 
-<Element class="post" data-post-id={id}>
-  {
-    title && (
-      <header>
-        <h2 set:html={title}></h2>
-      </header>
-    )
-  }
+<Element class="h-entry" data-post-id={id} {...Astro.props}>
+	{
+		title && (
+			<header>
+				<h2 class="p-name" set:html={title} />
+			</header>
+		)
+	}
 
   <div class="content">
     <Content />
   </div>
 
-  <footer>
-    <p>
-      <a rel="permalink" href={`/${slug}/`}>
-        <FormattedDate {date} />
-      </a>
-    </p>
-    <slot name="footer"></slot>
-  </footer>
+	<footer>
+		<p>
+			<a class="u-url" rel="permalink" href={`/${slug}/`}>
+				<FormattedDate {date} />
+			</a>
+		</p>
+		<slot name="footer" />
+	</footer>
 </Element>

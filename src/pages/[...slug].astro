@@ -5,26 +5,26 @@ import Post from "../components/Post.astro";
 import { format } from "date-fns";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("post");
+	const posts = await getCollection("post");
 
-  return posts.map((post) => ({
-    params: { slug: post.data.slug },
-    props: post,
-  }));
+	return posts.map((post) => ({
+		params: { slug: post.data.slug },
+		props: post,
+	}));
 }
 
 type Props = CollectionEntry<"post">;
 
 const post = Astro.props;
-const date = format(post.data.date, 'd. MMM yyyy');
+const date = format(post.data.date, "d. MMM yyyy");
 const title = post.data.title || `Untitled ${date}`;
 const description = `Note from ${date}`;
 ---
 
 <Base {title} {description}>
-  <Post element="div" id={post.id} slot="main">
-    <small aria-hidden="true" slot="footer">
-      {post.id}
-    </small>
-  </Post>
+	<Post element="div" id={post.id} slot="main">
+		<small aria-hidden="true" slot="footer">
+			{post.id}
+		</small>
+	</Post>
 </Base>

@@ -7,26 +7,26 @@ import { getCollection } from "astro:content";
 import { PAGE_SIZE } from "../consts";
 
 const allPosts = (await getCollection("post")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 const posts = allPosts.slice(0, PAGE_SIZE);
 
 const page = {
-  total: allPosts.length,
-  size: PAGE_SIZE,
-  currentPage: 1,
-  url: {
-    prev: null,
-    next: '/2',
-  }
+	total: allPosts.length,
+	size: PAGE_SIZE,
+	currentPage: 1,
+	url: {
+		prev: null,
+		next: "/2",
+	},
 };
 ---
 
 <Base title="" description="">
-  <Fragment slot="main">
-    {posts.map(({ id }) => <Post element="article" {id} />)}
+	<Fragment slot="main">
+		{posts.map(({ id }) => <Post element="article" {id} />)}
 
-    <Pagination {page} />
-  </Fragment>
-  <slot />
+		<Pagination {page} />
+	</Fragment>
+	<slot />
 </Base>

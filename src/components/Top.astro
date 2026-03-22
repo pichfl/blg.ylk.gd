@@ -5,16 +5,16 @@ import { Image } from "astro:assets";
 ---
 
 <header class="top">
-    <a href="/">
-        <Image
-            src={Portrait}
-            alt="Florian Pichler"
-            width="96"
-            height="96"
-            densities={[2]}
-            loading="lazy"
-            decoding="async"
-        />
+	<Image
+		class="u-photo"
+		src={Portrait}
+		alt="Florian Pichler"
+		width="96"
+		height="96"
+		densities={[2]}
+		loading="lazy"
+		decoding="async"
+	/>
 
         <h1 class="logo"><a href="/">{SITE_TITLE}</a></h1>
         <p class="description">{SITE_DESCRIPTION}</p>
