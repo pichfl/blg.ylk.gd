@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /
+
+# https://fed.brid.gy/ bridge
+RewriteRule ^.well-known/(host-meta|webfinger).* https://fed.brid.gy/$0  [redirect=302,last]
