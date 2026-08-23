@@ -1,6 +1,5 @@
 ---
-import type { RenderResult } from 'astro:content';
-
+import type { RenderResult } from "astro:content";
 
 interface Props {
 	rendered: RenderResult;
@@ -16,7 +15,7 @@ const { Content } = Astro.props.rendered;
 </div>
 
 <style is:global>
-  .e-content {
+	.e-content {
 		text-wrap: balance;
 		text-align: left;
 	}
@@ -37,7 +36,7 @@ const { Content } = Astro.props.rendered;
 	}
 
 	.e-content ul {
-		list-style: '–';
+		list-style: "–";
 	}
 
 	.e-content ol {
@@ -99,8 +98,8 @@ const { Content } = Astro.props.rendered;
 		height: auto;
 	}
 
-	.e-content img[data-orientation='portrait'],
-	.e-content img[data-orientation='square'] {
+	.e-content img[data-orientation="portrait"],
+	.e-content img[data-orientation="square"] {
 		max-width: var(--max-width);
 		height: auto;
 	}
@@ -114,8 +113,8 @@ const { Content } = Astro.props.rendered;
 
 	.e-content > blockquote:only-child {
 		font-family:
-			'Bodoni 72',
-			'Bodoni 11',
+			"Bodoni 72",
+			"Bodoni 11",
 			Didot,
 			Charter,
 			Palatino,
